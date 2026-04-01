@@ -1,0 +1,5 @@
+{
+  "name": "AutoCarnet",
+  "description": "Smart Vehicle Companion for tracking maintenance, expenses, and SOS.",
+  "requestFramePermissions": ["geolocation"]
+}
