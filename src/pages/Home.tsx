@@ -1,6 +1,4 @@
-import { Suspense, useEffect, useState } from 'react';
-import { Canvas } from '@react-three/fiber';
-import { Environment, ContactShadows, OrbitControls } from '@react-three/drei';
+import { useEffect, useState } from 'react';
 import CarModel from '@/components/3d/CarModel';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Activity, Navigation, Settings, Car, Loader2 } from 'lucide-react';
@@ -141,16 +139,9 @@ export default function Home() {
               </div>
             </div>
             
-            <Canvas camera={{ position: [5, 3, 5], fov: 45 }}>
-              <ambientLight intensity={0.5} />
-              <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={1} castShadow />
-              <Suspense fallback={null}>
-                <CarModel isProblem={hasProblems} />
-                <Environment preset="city" />
-                <ContactShadows position={[0, 0, 0]} opacity={0.4} scale={10} blur={2} far={4} />
-              </Suspense>
-              <OrbitControls enableZoom={false} enablePan={false} maxPolarAngle={Math.PI / 2 - 0.1} />
-            </Canvas>
+            <div className="w-full h-full flex items-center justify-center">
+              <CarModel isProblem={hasProblems} vehicleType={vehicle?.type + ' ' + vehicle?.make + ' ' + vehicle?.model} />
+            </div>
           </>
         ) : !loading ? (
           <div className="flex flex-col items-center justify-center h-full text-center p-6">
