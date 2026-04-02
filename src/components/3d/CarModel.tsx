@@ -3,7 +3,7 @@ type VehicleType = 'moto' | 'voiture' | 'tricycle' | 'camion' | string;
 function MotoSVG({ color }: { color: string }) {
   return (
     <img 
-      src="/src/components/3d/moto.png" 
+      src="/moto.png" 
       alt="moto"
       style={{ 
         width: "100%", 
