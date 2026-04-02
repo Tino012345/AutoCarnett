@@ -38,6 +38,7 @@ export default function Login() {
         });
         if (error) throw error;
         toast.success("Connexion réussie !");
+        window.location.href = '/';
       }
     } catch (error: any) {
       toast.error(error.message || "Une erreur est survenue");
