@@ -2,18 +2,74 @@ type VehicleType = 'moto' | 'voiture' | 'tricycle' | 'camion' | string;
 
 function MotoSVG({ color }: { color: string }) {
   return (
-    <svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
-      <circle cx="45" cy="85" r="28" fill="none" stroke={color} strokeWidth="8"/>
-      <circle cx="45" cy="85" r="10" fill={color}/>
-      <circle cx="155" cy="85" r="28" fill="none" stroke={color} strokeWidth="8"/>
-      <circle cx="155" cy="85" r="10" fill={color}/>
-      <path d="M45 85 L80 55 L120 50 L155 85" fill="none" stroke={color} strokeWidth="8" strokeLinecap="round"/>
-      <path d="M80 55 L90 30 L115 30 L120 50" fill={color} opacity="0.8"/>
-      <path d="M110 50 L140 50 L155 70 L130 75 Z" fill={color}/>
-      <rect x="85" y="25" width="30" height="12" rx="4" fill={color} opacity="0.6"/>
-      <circle cx="170" cy="60" r="6" fill="#ffd700"/>
-      <circle cx="28" cy="60" r="5" fill="#ff4444" opacity="0.7"/>
+    <svg viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+      {/* Roue arrière */}
+      <circle cx="75" cy="115" r="38" fill="none" stroke="#333" strokeWidth="12"/>
+      <circle cx="75" cy="115" r="26" fill="none" stroke="#444" strokeWidth="4"/>
+      <circle cx="75" cy="115" r="8" fill="#555"/>
+      {/* Rayons roue arrière */}
+      {[0,45,90,135].map(a => (
+        <line key={a} x1="75" y1="115"
+          x2={75 + 24*Math.cos(a*Math.PI/180)}
+          y2={115 + 24*Math.sin(a*Math.PI/180)}
+          stroke="#555" strokeWidth="2"/>
+      ))}
+
+      {/* Roue avant */}
+      <circle cx="225" cy="115" r="38" fill="none" stroke="#333" strokeWidth="12"/>
+      <circle cx="225" cy="115" r="26" fill="none" stroke="#444" strokeWidth="4"/>
+      <circle cx="225" cy="115" r="8" fill="#555"/>
+      {[0,45,90,135].map(a => (
+        <line key={a} x1="225" y1="115"
+          x2={225 + 24*Math.cos(a*Math.PI/180)}
+          y2={115 + 24*Math.sin(a*Math.PI/180)}
+          stroke="#555" strokeWidth="2"/>
+      ))}
+
+      {/* Fourche avant */}
+      <line x1="200" y1="60" x2="225" y2="115" stroke="#666" strokeWidth="6" strokeLinecap="round"/>
+      <line x1="210" y1="55" x2="225" y2="115" stroke="#555" strokeWidth="4" strokeLinecap="round"/>
+
+      {/* Cadre principal */}
+      <path d="M75 115 L100 70 L160 55 L200 60" fill="none" stroke="#555" strokeWidth="8" strokeLinecap="round"/>
+      <path d="M100 70 L150 75 L190 100 L75 115" fill="none" stroke="#444" strokeWidth="5" strokeLinecap="round"/>
+
+      {/* Corps / carénage */}
+      <path d="M95 72 L155 52 L195 62 L185 95 L140 100 L100 90 Z" fill={color} opacity="0.95"/>
+      
+      {/* Réservoir */}
+      <ellipse cx="148" cy="68" rx="35" ry="18" fill={color}/>
+      <ellipse cx="148" cy="65" rx="30" ry="12" fill={color} opacity="0.8"/>
+
+      {/* Selle */}
+      <path d="M105 72 L155 58 L175 65 L155 75 L110 80 Z" fill="#222" rx="5"/>
+      <path d="M108 73 L153 60 L170 66 L153 74 L112 78 Z" fill="#333"/>
+
+      {/* Guidon */}
+      <line x1="198" y1="58" x2="215" y2="48" stroke="#666" strokeWidth="5" strokeLinecap="round"/>
+      <line x1="215" y1="48" x2="225" y2="52" stroke="#666" strokeWidth="4" strokeLinecap="round"/>
+      <circle cx="225" cy="52" r="5" fill="#444"/>
+
+      {/* Phare avant */}
+      <ellipse cx="238" cy="85" rx="10" ry="8" fill="#ffd700" opacity="0.9"/>
+      <ellipse cx="238" cy="85" rx="6" ry="5" fill="#fff" opacity="0.7"/>
+
+      {/* Feu arrière */}
+      <ellipse cx="62" cy="85" rx="8" ry="6" fill="#ff3333" opacity="0.8"/>
+
+      {/* Échappement */}
+      <path d="M80 108 Q60 105 45 112" fill="none" stroke="#888" strokeWidth="5" strokeLinecap="round"/>
+
+      {/* Détails moteur */}
+      <rect x="115" y="85" width="45" height="25" rx="5" fill="#333" opacity="0.8"/>
+      <rect x="120" y="88" width="35" height="8" rx="3" fill="#444"/>
+      <rect x="120" y="98" width="35" height="8" rx="3" fill="#444"/>
+
+      {/* Reflet carénage */}
+      <path d="M130 56 L160 50 L170 58 L155 62 Z" fill="white" opacity="0.15"/>
     </svg>
+  );
+}
   );
 }
 
